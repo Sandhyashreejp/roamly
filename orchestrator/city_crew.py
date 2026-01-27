@@ -1,30 +1,49 @@
 from crewai import Crew, Process, Task
 from agents.urban_navigator import get_urban_navigator
 from agents.culture_curator import get_culture_curator
+from agents.gastronomy_scout import get_gastronomy_scout # New
+from agents.budget_balancer import get_budget_balancer   # New
 
 def run_roamly(user_data):
-    # Initialize agents based on research roles
+    # Initialize all four agents
     navigator = get_urban_navigator()
     curator = get_culture_curator()
+    scout = get_gastronomy_scout()
+    balancer = get_budget_balancer()
 
-    # Define simple placeholder tasks
-    task1 = Task(
-        description=f"Research the best neighborhoods in {user_data.city} for someone interested in {user_data.interests}.",
+    # Task 1: Neighborhoods
+    task_nav = Task(
+        description=f"Research neighborhoods in {user_data.city} for interests: {user_data.interests}.",
         agent=navigator,
-        expected_output="A list of 3 recommended neighborhoods with transit options."
+        expected_output="3 recommended neighborhoods."
     )
 
-    task2 = Task(
-        description=f"Find 2 hidden cultural gems in {user_data.city} that fit the budget level: {user_data.budget_level}.",
+    # Task 2: Culture
+    task_culture = Task(
+        description=f"Find 2 hidden cultural gems in {user_data.city}.",
         agent=curator,
-        expected_output="A description of 2 authentic cultural spots."
+        expected_output="2 authentic cultural spots."
     )
 
-    # Assemble the crew
+    # Task 3: Food (New)
+    task_food = Task(
+        description=f"Find 3 dining options in {user_data.city} that fit a {user_data.budget_level} budget.",
+        agent=scout,
+        expected_output="3 restaurant recommendations with brief descriptions."
+    )
+
+    # Task 4: Budget Check (New)
+    task_budget = Task(
+        description=f"Review the total estimated cost for the suggestions in {user_data.city} and ensure it fits {user_data.budget_level}.",
+        agent=balancer,
+        expected_output="A brief budget breakdown and confirmation of affordability."
+    )
+
+    # Assemble the expanded crew
     crew = Crew(
-        agents=[navigator, curator],
-        tasks=[task1, task2],
-        process=Process.sequential # One after the other
+        agents=[navigator, curator, scout, balancer],
+        tasks=[task_nav, task_culture, task_food, task_budget],
+        process=Process.sequential
     )
 
     return crew.kickoff()
