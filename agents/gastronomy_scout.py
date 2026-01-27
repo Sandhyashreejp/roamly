@@ -1,13 +1,16 @@
 from crewai import Agent
+from tools.scraper_tool import get_scraper_tool
 
 def get_gastronomy_scout():
+    scraper_tool = get_scraper_tool()
+    
     return Agent(
         role="Gastronomy Scout",
-        goal="Recommend restaurants and eateries based on dietary needs and budget in {city}.",
-        backstory="""You are a professional food critic and nutritionist. 
-        You have an uncanny ability to find the best local food, from street 
-        stalls to fine dining, while always ensuring they meet the user's 
-        specific dietary requirements.""",
+        goal="Extract restaurant menus and pricing from websites to find the best {budget_level} options in {city}.",
+        backstory="""You are a data-driven food expert. You don't just trust reviews; 
+        you go straight to the source by reading restaurant menus to ensure 
+        they meet dietary needs and budget limits.""",
+        tools=[scraper_tool],
         verbose=True,
         allow_delegation=False
     )
