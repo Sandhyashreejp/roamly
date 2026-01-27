@@ -1,31 +1,21 @@
 from schemas.user_input import UserInput
+from orchestrator.city_crew import run_roamly
 
-def test_schema():
-    print("--- Testing Roamly UserInput Schema ---")
+def main():
+    # 1. Capture Validated Input
+    user_request = UserInput(
+        city="Berlin",
+        interests=["Techno culture", "History"],
+        duration_days=2,
+        budget_level="Student"
+    )
+
+    # 2. Run the Roamly Pipeline
+    print(f"🚀 Roamly is planning your trip to {user_request.city}...\n")
+    result = run_roamly(user_request)
     
-    # 1. Test with valid data
-    try:
-        valid_data = UserInput(
-            city="Paris",
-            interests=["Art", "Bakeries"],
-            duration_days=3,
-            budget_level="Mid-range"
-        )
-        print(f"✅ Success! Valid Input: {valid_data}")
-    except Exception as e:
-        print(f"❌ Unexpected Error: {e}")
-
-    # 2. Test with invalid data (Negative days)
-    print("\n--- Testing Validation (Intentional Error) ---")
-    try:
-        invalid_data = UserInput(
-            city="Berlin",
-            interests=["History"],
-            duration_days=-1,  # This should fail!
-            budget_level="Budget"
-        )
-    except Exception as e:
-        print(f"✅ Validation caught the error as expected:\n{e}")
+    print("\n--- FINAL ITINERARY ---")
+    print(result)
 
 if __name__ == "__main__":
-    test_schema()
+    main()
