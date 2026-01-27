@@ -1,48 +1,54 @@
 from crewai import Crew, Process, Task
 from agents.urban_navigator import get_urban_navigator
 from agents.culture_curator import get_culture_curator
-from agents.gastronomy_scout import get_gastronomy_scout # New
-from agents.budget_balancer import get_budget_balancer   # New
+from agents.gastronomy_scout import get_gastronomy_scout
+from agents.budget_balancer import get_budget_balancer
+from agents.time_orchestrator import get_time_orchestrator # Final Agent
 
 def run_roamly(user_data):
-    # Initialize all four agents
+    # Initialize all five specialized agents from the exposé
     navigator = get_urban_navigator()
     curator = get_culture_curator()
     scout = get_gastronomy_scout()
     balancer = get_budget_balancer()
+    orchestrator = get_time_orchestrator()
 
-    # Task 1: Neighborhoods
+    # Define the 5-step task sequence
     task_nav = Task(
-        description=f"Research neighborhoods in {user_data.city} for interests: {user_data.interests}.",
+        description=f"Identify 3 key neighborhoods in {user_data.city} based on: {user_data.interests}.",
         agent=navigator,
-        expected_output="3 recommended neighborhoods."
+        expected_output="3 neighborhoods with brief logistical context."
     )
 
-    # Task 2: Culture
     task_culture = Task(
-        description=f"Find 2 hidden cultural gems in {user_data.city}.",
+        description=f"Find 2-3 authentic cultural gems in {user_data.city} within these neighborhoods.",
         agent=curator,
-        expected_output="2 authentic cultural spots."
+        expected_output="Cultural spots with descriptions and 'vibe' details."
     )
 
-    # Task 3: Food (New)
     task_food = Task(
-        description=f"Find 3 dining options in {user_data.city} that fit a {user_data.budget_level} budget.",
+        description=f"Find 3 dining options in {user_data.city} matching a {user_data.budget_level} budget.",
         agent=scout,
-        expected_output="3 restaurant recommendations with brief descriptions."
+        expected_output="Dining recommendations including meal types and price levels."
     )
 
-    # Task 4: Budget Check (New)
     task_budget = Task(
-        description=f"Review the total estimated cost for the suggestions in {user_data.city} and ensure it fits {user_data.budget_level}.",
+        description=f"Audit the costs of the selected spots to ensure they fit a {user_data.budget_level} profile.",
         agent=balancer,
-        expected_output="A brief budget breakdown and confirmation of affordability."
+        expected_output="A brief cost-validation report."
     )
 
-    # Assemble the expanded crew
+    # The Final Task: The Time-Aware Itinerary
+    task_time = Task(
+        description=f"Organize all selected spots into a {user_data.duration_days}-day chronological itinerary.",
+        agent=orchestrator,
+        expected_output="A day-by-day schedule with morning, afternoon, and evening slots."
+    )
+
+    # Assemble the full Master's Research Crew
     crew = Crew(
-        agents=[navigator, curator, scout, balancer],
-        tasks=[task_nav, task_culture, task_food, task_budget],
+        agents=[navigator, curator, scout, balancer, orchestrator],
+        tasks=[task_nav, task_culture, task_food, task_budget, task_time],
         process=Process.sequential
     )
 
