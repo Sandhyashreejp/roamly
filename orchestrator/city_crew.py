@@ -43,9 +43,14 @@ def run_roamly(user_data):
     )
 
     task_budget = Task(
-        description=f"Audit the costs of the selected spots to ensure they fit a {user_data.budget_level} profile.",
+        description=(
+            f"1. Review the neighborhoods, cultural spots, and restaurants suggested by the previous agents.\n"
+            f"2. Search for the current entry fees for the cultural spots and average meal prices for the restaurants.\n"
+            f"3. Calculate a total estimated daily budget for a {user_data.duration_days}-day trip.\n"
+            f"4. If the total exceeds the {user_data.budget_level} level, suggest one specific cost-saving alternative."
+        ),
         agent=balancer,
-        expected_output="A brief cost-validation report."
+        expected_output="A detailed budget breakdown (Transport, Food, Activities) and a final 'Approved' or 'Adjusted' status."
     )
 
     # The Final Task: The Time-Aware Itinerary
