@@ -55,9 +55,16 @@ def run_roamly(user_data):
 
     # The Final Task: The Time-Aware Itinerary
     task_time = Task(
-        description=f"Organize all selected spots into a {user_data.duration_days}-day chronological itinerary.",
+        description=(
+            f"1. Take the approved spots and budget from the previous agents.\n"
+            f"2. Search for the weather forecast in {user_data.city} for the next {user_data.duration_days} days.\n"
+            f"3. Verify the opening hours for every suggested venue.\n"
+            f"4. Organize the activities chronologically. Place outdoor activities "
+            f"during good weather and group spots by neighborhood to minimize travel time.\n"
+            f"5. Include estimated travel times between locations."
+        ),
         agent=orchestrator,
-        expected_output="A day-by-day schedule with morning, afternoon, and evening slots."
+        expected_output=f"A complete {user_data.duration_days}-day itinerary with time slots and weather-contingency notes."
     )
 
     # Assemble the full Master's Research Crew

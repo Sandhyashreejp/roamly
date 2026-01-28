@@ -1,13 +1,17 @@
 from crewai import Agent
+from tools.search_tool import get_search_tool
 
 def get_time_orchestrator():
+    search_tool = get_search_tool()
+    
     return Agent(
         role="Time Orchestrator",
-        goal="Build a feasible, time-aware itinerary using weather forecasts and venue hours.",
-        backstory="""You are a master scheduler and logistics expert. 
-        You specialize in sequence and timing, ensuring that travel routes 
-        make sense geographically and that outdoor activities are planned 
-        for the best weather windows.""",
+        goal="Synthesize all data into a feasible, weather-aware, and chronological itinerary.",
+        backstory="""You are a logistical genius. You take the suggestions from 
+        the Navigator, Curator, and Scout, check the weather and venue hours, 
+        and arrange everything into a perfect schedule that maximizes 
+        the user's time and energy.""",
+        tools=[search_tool],
         verbose=True,
         allow_delegation=False
     )
