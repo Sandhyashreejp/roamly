@@ -1,15 +1,17 @@
 from crewai import Agent
-from tools.search_tool import get_search_tool
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 def get_urban_navigator():
-    search_tool = get_search_tool()
-    
     return Agent(
-        role="Urban Navigator",
-        goal="Identify suitable neighborhoods and retrieve real-time transportation info for {city}.",
-        backstory="""You use real-time search tools to find current transit 
-        statuses and neighborhood trends.""",
-        tools=[search_tool], # Giving the agent the 'web browser'
+        role="Senior Urban Logistics Architect",
+        goal="Identify the most efficient and culturally relevant neighborhoods in {city} based on {interests}.",
+        backstory=(
+            "You are an expert in urban planning. Your job is to analyze the city's layout, "
+            "transportation hubs, and neighborhood 'vibes' to provide a logistical foundation "
+            "for a trip. You prioritize areas with high connectivity and safety."
+        ),
+        tools=[SerperDevTool(), ScrapeWebsiteTool()],
         verbose=True,
-        allow_delegation=False
+        allow_delegation=False,
+        cache=True
     )

@@ -1,16 +1,16 @@
 from crewai import Agent
-from tools.scraper_tool import get_scraper_tool
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool # Add this line
 
 def get_gastronomy_scout():
-    scraper_tool = get_scraper_tool()
-    
     return Agent(
-        role="Gastronomy Scout",
-        goal="Extract restaurant menus and pricing from websites to find the best {budget_level} options in {city}.",
-        backstory="""You are a data-driven food expert. You don't just trust reviews; 
-        you go straight to the source by reading restaurant menus to ensure 
-        they meet dietary needs and budget limits.""",
-        tools=[scraper_tool],
+        role="Expert Culinary Scout & Food Critic",
+        goal="Find authentic dining experiences that match the user's budget and interests.",
+        backstory=(
+            "You are a food explorer who finds the best local eateries, from street food "
+            "to hidden bistros. You verify price ranges and menus to ensure they fit "
+            "the user's budget and dietary preferences. You focus on spots with local character."
+        ),
+        tools=[SerperDevTool(), ScrapeWebsiteTool()], # Now this will work!
         verbose=True,
-        allow_delegation=False
+        cache=True
     )

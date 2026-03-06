@@ -1,17 +1,17 @@
 from crewai import Agent
-from tools.search_tool import get_search_tool
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 def get_time_orchestrator():
-    search_tool = get_search_tool()
-    
     return Agent(
-        role="Time Orchestrator",
-        goal="Synthesize all data into a feasible, weather-aware, and chronological itinerary.",
-        backstory="""You are a logistical genius. You take the suggestions from 
-        the Navigator, Curator, and Scout, check the weather and venue hours, 
-        and arrange everything into a perfect schedule that maximizes 
-        the user's time and energy.""",
-        tools=[search_tool],
+        role="Master Travel Chronologist & Scheduler",
+        goal="Synthesize all agent findings into a logical, time-optimized daily itinerary.",
+        backstory=(
+            "You are a world-class travel concierge. You specialize in 'logical flow.' "
+            "You ensure that activities in the same neighborhood are grouped together "
+            "to minimize travel time. You check weather forecasts to place outdoor "
+            "activities on sunny days and ensure opening hours are strictly respected."
+        ),
+        tools=[SerperDevTool(), ScrapeWebsiteTool()],
         verbose=True,
-        allow_delegation=False
+        cache=True
     )

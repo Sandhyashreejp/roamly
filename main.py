@@ -4,7 +4,7 @@ from orchestrator.city_crew import run_roamly
 def main():
     # 1. Capture Validated Input
     user_request = UserInput(
-        city="Berlin",
+        city="Heidelberg",
         interests=["Techno culture", "History"],
         duration_days=2,
         budget_level="Student"

@@ -1,17 +1,23 @@
 from crewai import Agent
-from tools.search_tool import get_search_tool
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 def get_budget_balancer():
-    search_tool = get_search_tool()
-    
+    """
+    Returns an agent specialized in financial auditing and cost optimization.
+    Equipped with search and scraping tools to verify real-world pricing.
+    """
     return Agent(
-        role="Budget Balancer",
-        goal="Audit trip costs and ensure the total stays within the {budget_level} limit.",
-        backstory="""You are a meticulous financial auditor for travel. 
-        You take the suggestions from the Navigator and Scout, calculate the 
-        total estimated cost, and if it's too high, you search for cheaper 
-        but equally authentic alternatives.""",
-        tools=[search_tool],
+        role="Senior Financial Travel Auditor",
+        goal="Audit all trip suggestions to ensure they align with the user's '{budget_level}' budget.",
+        backstory=(
+            "You are a meticulous financial planner with an obsession for value. "
+            "You evaluate the estimated costs of neighborhoods, attractions, and dining. "
+            "Your strength lies in calculating total trip costs and finding high-quality "
+            "but lower-cost alternatives if the current plan is too expensive. "
+            "You ensure that no traveler faces 'price shock' upon arrival."
+        ),
+        tools=[SerperDevTool(), ScrapeWebsiteTool()],
         verbose=True,
-        allow_delegation=False
+        allow_delegation=False,
+        cache=True
     )
