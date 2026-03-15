@@ -11,6 +11,6 @@ def get_culture_curator():
             "hidden gems and verify their current status using real-time scraping."
         ),
         tools=[SerperDevTool(), ScrapeWebsiteTool()],
-        verbose=True,
+        verbose=False,
         cache=True
     )

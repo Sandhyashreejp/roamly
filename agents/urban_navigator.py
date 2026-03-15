@@ -11,7 +11,7 @@ def get_urban_navigator():
             "for a trip. You prioritize areas with high connectivity and safety."
         ),
         tools=[SerperDevTool(), ScrapeWebsiteTool()],
-        verbose=True,
+        verbose=False,
         allow_delegation=False,
         cache=True
     )

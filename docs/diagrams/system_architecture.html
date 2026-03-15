@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roamly System Architecture Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        .architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .layer {
+            border: 3px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .layer-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .component {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .component:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+        }
+        .component-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .component-desc {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+        .flow-arrow {
+            text-align: center;
+            color: #667eea;
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .layer-1 { border-left: 5px solid #4A90E2; }
+        .layer-2 { border-left: 5px solid #7B68EE; }
+        .layer-3 { border-left: 5px solid #50C878; }
+        .layer-4 { border-left: 5px solid #FFB347; }
+        .layer-5 { border-left: 5px solid #FF6B6B; }
+        .layer-6 { border-left: 5px solid #3498DB; }
+
+        .comp-frontend { background: linear-gradient(135deg, #4A90E2 0%, #5AA3F0 100%); color: white; }
+        .comp-api { background: linear-gradient(135deg, #7B68EE 0%, #9B88FF 100%); color: white; }
+        .comp-orchestration { background: linear-gradient(135deg, #50C878 0%, #7FD99F 100%); color: white; }
+        .comp-agent { background: linear-gradient(135deg, #FFB347 0%, #FFD580 100%); color: #333; }
+        .comp-tools { background: linear-gradient(135deg, #FF6B6B 0%, #FF9999 100%); color: white; }
+        .comp-external { background: linear-gradient(135deg, #E74C3C 0%, #F5806B 100%); color: white; }
+        .comp-data { background: linear-gradient(135deg, #3498DB 0%, #5DADE2 100%); color: white; }
+
+        .flow-diagram {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .flow-step {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin: 10px;
+        }
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .legend-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏗️ Roamly System Architecture</h1>
+        <p class="subtitle">Multi-Agent Travel Itinerary Planner - Technical Architecture Diagram</p>
+
+        <div class="architecture">
+            <!-- Layer 1: Frontend -->
+            <div class="layer layer-1">
+                <div class="layer-title">🎨 Layer 1: Presentation Layer</div>
+                <div class="components">
+                    <div class="component comp-frontend">
+                        <div class="component-name">React 18 Frontend</div>
+                        <div class="component-desc">Vite bundler, TSX components, Responsive UI design</div>
+                    </div>
+                    <div class="component comp-frontend">
+                        <div class="component-name">State Management</div>
+                        <div class="component-desc">User inputs, itinerary display, real-time updates</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- Layer 2: API Gateway -->
+            <div class="layer layer-2">
+                <div class="layer-title">🔌 Layer 2: API Gateway & Backend</div>
+                <div class="components">
+                    <div class="component comp-api">
+                        <div class="component-name">FastAPI Server</div>
+                        <div class="component-desc">Uvicorn ASGI, Port 8000, REST API endpoints</div>
+                    </div>
+                    <div class="component comp-api">
+                        <div class="component-name">Routes & Middleware</div>
+                        <div class="component-desc">/api/plan, /api/status, Error handling, Logging</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- Layer 3: Orchestration -->
+            <div class="layer layer-3">
+                <div class="layer-title">🎯 Layer 3: CrewAI Orchestration Engine</div>
+                <div class="components">
+                    <div class="component comp-orchestration">
+                        <div class="component-name">CrewAI Crew Manager</div>
+                        <div class="component-desc">v0.203.2, Sequential execution, Context propagation</div>
+                    </div>
+                    <div class="component comp-orchestration">
+                        <div class="component-name">Task Dependency Graph</div>
+                        <div class="component-desc">DAG structure, Output validation, Execution order</div>
+                    </div>
+                    <div class="component comp-orchestration">
+                        <div class="component-name">Process Orchestrator</div>
+                        <div class="component-desc">Sequential process, Error handling, Timing</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- Layer 4: Agent Layer -->
+            <div class="layer layer-4">
+                <div class="layer-title">🤖 Layer 4: Intelligent Agent Layer</div>
+                <div class="components">
+                    <div class="component comp-agent">
+                        <div class="component-name">🗺️ Urban Navigator</div>
+                        <div class="component-desc">Route planning, Attractions, Navigation analysis</div>
+                    </div>
+                    <div class="component comp-agent">
+                        <div class="component-name">🎭 Culture Curator</div>
+                        <div class="component-desc">Cultural insights, Events, Local heritage</div>
+                    </div>
+                    <div class="component comp-agent">
+                        <div class="component-name">🍽️ Gastronomy Scout</div>
+                        <div class="component-desc">Restaurant discovery, Cuisine analysis, Reviews</div>
+                    </div>
+                    <div class="component comp-agent">
+                        <div class="component-name">💰 Budget Balancer</div>
+                        <div class="component-desc">Cost estimation, Optimization, Budget tracking</div>
+                    </div>
+                    <div class="component comp-agent">
+                        <div class="component-name">⏰ Time Orchestrator</div>
+                        <div class="component-desc">Schedule planning, Duration estimation, Timeline</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- Layer 5: Tools & External APIs -->
+            <div class="layer layer-5">
+                <div class="layer-title">🛠️ Layer 5: Tool Integration & External Services</div>
+                <div class="components">
+                    <div class="component comp-tools">
+                        <div class="component-name">SerperDev API</div>
+                        <div class="component-desc">Google Search integration, Real-time data, Web index</div>
+                    </div>
+                    <div class="component comp-tools">
+                        <div class="component-name">Web Scraper</div>
+                        <div class="component-desc">Data verification, Current information, Dynamic content</div>
+                    </div>
+                    <div class="component comp-tools">
+                        <div class="component-name">LLM Function Calling</div>
+                        <div class="component-desc">Tool invocation, Parameter binding, ReAct paradigm</div>
+                    </div>
+                    <div class="component comp-external">
+                        <div class="component-name">OpenAI GPT-4</div>
+                        <div class="component-desc">Language understanding, Reasoning, Text generation</div>
+                    </div>
+                    <div class="component comp-external">
+                        <div class="component-name">Google APIs</div>
+                        <div class="component-desc">Maps, Places, Geocoding, Directions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flow-arrow">↓</div>
+
+            <!-- Layer 6: Data Layer -->
+            <div class="layer layer-6">
+                <div class="layer-title">💾 Layer 6: Data Validation & Storage</div>
+                <div class="components">
+                    <div class="component comp-data">
+                        <div class="component-name">Pydantic v2</div>
+                        <div class="component-desc">Data validation, Type safety, Schema definitions</div>
+                    </div>
+                    <div class="component comp-data">
+                        <div class="component-name">Request/Response Cache</div>
+                        <div class="component-desc">Context storage, Data persistence, Memory management</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Flow -->
+        <div class="flow-diagram">
+            <h3>Request/Response Flow</h3>
+            <div>
+                <span class="flow-step">User Input</span>
+                <span style="font-size: 1.5em;">→</span>
+                <span class="flow-step">React Frontend</span>
+                <span style="font-size: 1.5em;">→</span>
+                <span class="flow-step">FastAPI Backend</span>
+                <span style="font-size: 1.5em;">→</span>
+                <span class="flow-step">CrewAI Orchestrator</span>
+            </div>
+            <div style="margin-top: 20px;">
+                <span class="flow-step">Agents Execute Tasks</span>
+                <span style="font-size: 1.5em;">→</span>
+                <span class="flow-step">Call External APIs</span>
+                <span style="font-size: 1.5em;">→</span>
+                <span class="flow-step">Process Results</span>
+                <span style="font-size: 1.5em;">→</span>
+                <span class="flow-step">Return Itinerary</span>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #4A90E2, #5AA3F0);"></div>
+                <span>Presentation Layer</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #7B68EE, #9B88FF);"></div>
+                <span>API Gateway</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #50C878, #7FD99F);"></div>
+                <span>Orchestration</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #FFB347, #FFD580);"></div>
+                <span>Agent Layer</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #FF6B6B, #FF9999);"></div>
+                <span>Tools & APIs</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #E74C3C, #F5806B);"></div>
+                <span>External Services</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background: linear-gradient(135deg, #3498DB, #5DADE2);"></div>
+                <span>Data Layer</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

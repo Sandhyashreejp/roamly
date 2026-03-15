@@ -17,7 +17,7 @@ def get_budget_balancer():
             "You ensure that no traveler faces 'price shock' upon arrival."
         ),
         tools=[SerperDevTool(), ScrapeWebsiteTool()],
-        verbose=True,
+        verbose=False,
         allow_delegation=False,
         cache=True
     )

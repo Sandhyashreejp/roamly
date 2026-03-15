@@ -1,5 +1,5 @@
 from crewai import Agent
-from crewai_tools import SerperDevTool, ScrapeWebsiteTool # Add this line
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 
 def get_gastronomy_scout():
     return Agent(
@@ -10,7 +10,7 @@ def get_gastronomy_scout():
             "to hidden bistros. You verify price ranges and menus to ensure they fit "
             "the user's budget and dietary preferences. You focus on spots with local character."
         ),
-        tools=[SerperDevTool(), ScrapeWebsiteTool()], # Now this will work!
-        verbose=True,
+        tools=[SerperDevTool(), ScrapeWebsiteTool()],
+        verbose=False,
         cache=True
     )

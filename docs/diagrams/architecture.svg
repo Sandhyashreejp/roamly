@@ -1,0 +1,235 @@
+<svg viewBox="0 0 1200 1400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define gradients -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#357ABD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B68EE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5A4FA8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#50C878;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E7D4E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CC8C3A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CC5555;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6C3A73;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498DB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2471A3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="40" font-size="36" font-weight="bold" text-anchor="middle" fill="#333">
+    ROAMLY SYSTEM ARCHITECTURE
+  </text>
+  <text x="600" y="70" font-size="14" text-anchor="middle" fill="#666">
+    Multi-Agent Travel Itinerary Planner
+  </text>
+
+  <!-- Layer 1: Frontend -->
+  <g>
+    <rect x="50" y="100" width="1100" height="120" fill="url(#grad1)" opacity="0.1" stroke="url(#grad1)" stroke-width="3" rx="8"/>
+    <text x="70" y="130" font-size="18" font-weight="bold" fill="#4A90E2">🎨 LAYER 1: PRESENTATION</text>
+
+    <rect x="100" y="150" width="400" height="50" fill="url(#grad1)" rx="6"/>
+    <text x="300" y="170" font-size="14" font-weight="bold" fill="white" text-anchor="middle">React 18 + Vite Frontend</text>
+    <text x="300" y="190" font-size="11" fill="white" text-anchor="middle">UI Components • State Management</text>
+
+    <rect x="700" y="150" width="400" height="50" fill="url(#grad1)" rx="6"/>
+    <text x="900" y="170" font-size="14" font-weight="bold" fill="white" text-anchor="middle">User Interface</text>
+    <text x="900" y="190" font-size="11" fill="white" text-anchor="middle">Responsive Design • Real-time Updates</text>
+  </g>
+
+  <!-- Arrow Down 1 -->
+  <line x1="600" y1="220" x2="600" y2="250" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#999"/>
+    </marker>
+  </defs>
+
+  <!-- Layer 2: API Gateway -->
+  <g>
+    <rect x="50" y="250" width="1100" height="120" fill="url(#grad2)" opacity="0.1" stroke="url(#grad2)" stroke-width="3" rx="8"/>
+    <text x="70" y="280" font-size="18" font-weight="bold" fill="#7B68EE">🔌 LAYER 2: API GATEWAY</text>
+
+    <rect x="100" y="300" width="400" height="50" fill="url(#grad2)" rx="6"/>
+    <text x="300" y="320" font-size="14" font-weight="bold" fill="white" text-anchor="middle">FastAPI Server</text>
+    <text x="300" y="340" font-size="11" fill="white" text-anchor="middle">Uvicorn • Port 8000 • REST API</text>
+
+    <rect x="700" y="300" width="400" height="50" fill="url(#grad2)" rx="6"/>
+    <text x="900" y="320" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Routes & Middleware</text>
+    <text x="900" y="340" font-size="11" fill="white" text-anchor="middle">/api/plan • /api/status • Logging</text>
+  </g>
+
+  <!-- Arrow Down 2 -->
+  <line x1="600" y1="370" x2="600" y2="400" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Layer 3: Orchestration -->
+  <g>
+    <rect x="50" y="400" width="1100" height="120" fill="url(#grad3)" opacity="0.1" stroke="url(#grad3)" stroke-width="3" rx="8"/>
+    <text x="70" y="430" font-size="18" font-weight="bold" fill="#50C878">🎯 LAYER 3: CREWAI ORCHESTRATION</text>
+
+    <rect x="100" y="450" width="280" height="50" fill="url(#grad3)" rx="6"/>
+    <text x="240" y="470" font-size="13" font-weight="bold" fill="white" text-anchor="middle">CrewAI Crew Manager</text>
+    <text x="240" y="487" font-size="10" fill="white" text-anchor="middle">v0.203.2 • Sequential Execution</text>
+
+    <rect x="460" y="450" width="280" height="50" fill="url(#grad3)" rx="6"/>
+    <text x="600" y="470" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Task Dependency Graph</text>
+    <text x="600" y="487" font-size="10" fill="white" text-anchor="middle">DAG Structure • Output Validation</text>
+
+    <rect x="820" y="450" width="280" height="50" fill="url(#grad3)" rx="6"/>
+    <text x="960" y="470" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Process Orchestrator</text>
+    <text x="960" y="487" font-size="10" fill="white" text-anchor="middle">Context Propagation • Error Handling</text>
+  </g>
+
+  <!-- Arrow Down 3 -->
+  <line x1="600" y1="520" x2="600" y2="550" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Layer 4: Agents -->
+  <g>
+    <rect x="50" y="550" width="1100" height="190" fill="url(#grad4)" opacity="0.1" stroke="url(#grad4)" stroke-width="3" rx="8"/>
+    <text x="70" y="580" font-size="18" font-weight="bold" fill="#FFB347">🤖 LAYER 4: INTELLIGENT AGENTS (Sequential Execution)</text>
+
+    <!-- Agent 1 -->
+    <rect x="70" y="600" width="180" height="110" fill="url(#grad4)" rx="6"/>
+    <text x="160" y="625" font-size="13" font-weight="bold" fill="white" text-anchor="middle">🗺️ Urban Navigator</text>
+    <text x="160" y="645" font-size="9" fill="white" text-anchor="middle">Route Planning</text>
+    <text x="160" y="658" font-size="9" fill="white" text-anchor="middle">Attractions</text>
+    <text x="160" y="671" font-size="9" fill="white" text-anchor="middle">Navigation Analysis</text>
+    <circle cx="160" cy="695" r="8" fill="white"/>
+    <text x="160" y="700" font-size="10" fill="#FFB347" text-anchor="middle" font-weight="bold">Task 1</text>
+
+    <!-- Agent 2 -->
+    <rect x="270" y="600" width="180" height="110" fill="url(#grad4)" rx="6"/>
+    <text x="360" y="625" font-size="13" font-weight="bold" fill="white" text-anchor="middle">🎭 Culture Curator</text>
+    <text x="360" y="645" font-size="9" fill="white" text-anchor="middle">Cultural Insights</text>
+    <text x="360" y="658" font-size="9" fill="white" text-anchor="middle">Events & Heritage</text>
+    <text x="360" y="671" font-size="9" fill="white" text-anchor="middle">Local Information</text>
+    <circle cx="360" cy="695" r="8" fill="white"/>
+    <text x="360" y="700" font-size="10" fill="#FFB347" text-anchor="middle" font-weight="bold">Task 2</text>
+
+    <!-- Agent 3 -->
+    <rect x="470" y="600" width="180" height="110" fill="url(#grad4)" rx="6"/>
+    <text x="560" y="625" font-size="13" font-weight="bold" fill="white" text-anchor="middle">🍽️ Gastronomy Scout</text>
+    <text x="560" y="645" font-size="9" fill="white" text-anchor="middle">Restaurant Discovery</text>
+    <text x="560" y="658" font-size="9" fill="white" text-anchor="middle">Cuisine Analysis</text>
+    <text x="560" y="671" font-size="9" fill="white" text-anchor="middle">Reviews & Ratings</text>
+    <circle cx="560" cy="695" r="8" fill="white"/>
+    <text x="560" y="700" font-size="10" fill="#FFB347" text-anchor="middle" font-weight="bold">Task 3</text>
+
+    <!-- Agent 4 -->
+    <rect x="670" y="600" width="180" height="110" fill="url(#grad4)" rx="6"/>
+    <text x="760" y="625" font-size="13" font-weight="bold" fill="white" text-anchor="middle">💰 Budget Balancer</text>
+    <text x="760" y="645" font-size="9" fill="white" text-anchor="middle">Cost Estimation</text>
+    <text x="760" y="658" font-size="9" fill="white" text-anchor="middle">Optimization</text>
+    <text x="760" y="671" font-size="9" fill="white" text-anchor="middle">Budget Tracking</text>
+    <circle cx="760" cy="695" r="8" fill="white"/>
+    <text x="760" y="700" font-size="10" fill="#FFB347" text-anchor="middle" font-weight="bold">Task 4</text>
+
+    <!-- Agent 5 -->
+    <rect x="870" y="600" width="180" height="110" fill="url(#grad4)" rx="6"/>
+    <text x="960" y="625" font-size="13" font-weight="bold" fill="white" text-anchor="middle">⏰ Time Orchestrator</text>
+    <text x="960" y="645" font-size="9" fill="white" text-anchor="middle">Schedule Planning</text>
+    <text x="960" y="658" font-size="9" fill="white" text-anchor="middle">Duration Estimation</text>
+    <text x="960" y="671" font-size="9" fill="white" text-anchor="middle">Timeline Optimization</text>
+    <circle cx="960" cy="695" r="8" fill="white"/>
+    <text x="960" y="700" font-size="10" fill="#FFB347" text-anchor="middle" font-weight="bold">Task 5</text>
+  </g>
+
+  <!-- Arrow Down 4 -->
+  <line x1="600" y1="730" x2="600" y2="760" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Layer 5: Tools & External APIs -->
+  <g>
+    <rect x="50" y="760" width="1100" height="160" fill="url(#grad5)" opacity="0.1" stroke="url(#grad5)" stroke-width="3" rx="8"/>
+    <text x="70" y="790" font-size="18" font-weight="bold" fill="#FF6B6B">🛠️ LAYER 5: TOOLS & EXTERNAL SERVICES</text>
+
+    <rect x="70" y="820" width="200" height="80" fill="url(#grad5)" rx="6"/>
+    <text x="170" y="840" font-size="12" font-weight="bold" fill="white" text-anchor="middle">SerperDev API</text>
+    <text x="170" y="858" font-size="9" fill="white" text-anchor="middle">Google Search</text>
+    <text x="170" y="873" font-size="9" fill="white" text-anchor="middle">Real-time Data</text>
+
+    <rect x="290" y="820" width="200" height="80" fill="url(#grad5)" rx="6"/>
+    <text x="390" y="840" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Web Scraper</text>
+    <text x="390" y="858" font-size="9" fill="white" text-anchor="middle">Data Verification</text>
+    <text x="390" y="873" font-size="9" fill="white" text-anchor="middle">Dynamic Content</text>
+
+    <rect x="510" y="820" width="200" height="80" fill="url(#grad5)" rx="6"/>
+    <text x="610" y="840" font-size="12" font-weight="bold" fill="white" text-anchor="middle">LLM Function Calling</text>
+    <text x="610" y="858" font-size="9" fill="white" text-anchor="middle">Tool Invocation</text>
+    <text x="610" y="873" font-size="9" fill="white" text-anchor="middle">ReAct Paradigm</text>
+
+    <rect x="730" y="820" width="200" height="80" fill="url(#grad6)" rx="6"/>
+    <text x="830" y="840" font-size="12" font-weight="bold" fill="white" text-anchor="middle">OpenAI GPT-4</text>
+    <text x="830" y="858" font-size="9" fill="white" text-anchor="middle">Language Understanding</text>
+    <text x="830" y="873" font-size="9" fill="white" text-anchor="middle">Reasoning & Generation</text>
+
+    <rect x="950" y="820" width="180" height="80" fill="url(#grad6)" rx="6"/>
+    <text x="1040" y="840" font-size="12" font-weight="bold" fill="white" text-anchor="middle">Google APIs</text>
+    <text x="1040" y="858" font-size="9" fill="white" text-anchor="middle">Maps • Places</text>
+    <text x="1040" y="873" font-size="9" fill="white" text-anchor="middle">Geocoding</text>
+  </g>
+
+  <!-- Arrow Down 5 -->
+  <line x1="600" y1="940" x2="600" y2="970" stroke="#999" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Layer 6: Data & Validation -->
+  <g>
+    <rect x="50" y="970" width="1100" height="120" fill="url(#grad7)" opacity="0.1" stroke="url(#grad7)" stroke-width="3" rx="8"/>
+    <text x="70" y="1000" font-size="18" font-weight="bold" fill="#3498DB">💾 LAYER 6: DATA VALIDATION & STORAGE</text>
+
+    <rect x="200" y="1030" width="350" height="50" fill="url(#grad7)" rx="6"/>
+    <text x="375" y="1050" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Pydantic v2 Data Validation</text>
+    <text x="375" y="1067" font-size="10" fill="white" text-anchor="middle">Type Safety • Schema Definitions</text>
+
+    <rect x="650" y="1030" width="350" height="50" fill="url(#grad7)" rx="6"/>
+    <text x="825" y="1050" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Context Storage & Cache</text>
+    <text x="825" y="1067" font-size="10" fill="white" text-anchor="middle">Data Persistence • Memory Management</text>
+  </g>
+
+  <!-- Data Flow Info -->
+  <g>
+    <rect x="50" y="1130" width="1100" height="90" fill="#f5f5f5" stroke="#ccc" stroke-width="2" rx="8"/>
+    <text x="600" y="1160" font-size="16" font-weight="bold" text-anchor="middle" fill="#333">REQUEST/RESPONSE DATA FLOW</text>
+    <text x="600" y="1190" font-size="12" text-anchor="middle" fill="#666">
+      User Input → React Frontend → FastAPI Backend → CrewAI Orchestrator → Agents Execute Tasks (Parallel) → External APIs → Pydantic Validation → Response to User
+    </text>
+  </g>
+
+  <!-- Legend -->
+  <g>
+    <text x="60" y="1270" font-size="14" font-weight="bold" fill="#333">ARCHITECTURE LAYERS:</text>
+
+    <rect x="60" y="1290" width="20" height="20" fill="url(#grad1)" rx="3"/>
+    <text x="90" y="1305" font-size="11" fill="#333">Presentation Layer (Frontend)</text>
+
+    <rect x="400" y="1290" width="20" height="20" fill="url(#grad2)" rx="3"/>
+    <text x="430" y="1305" font-size="11" fill="#333">API Gateway & Backend</text>
+
+    <rect x="60" y="1330" width="20" height="20" fill="url(#grad3)" rx="3"/>
+    <text x="90" y="1345" font-size="11" fill="#333">CrewAI Orchestration</text>
+
+    <rect x="400" y="1330" width="20" height="20" fill="url(#grad4)" rx="3"/>
+    <text x="430" y="1345" font-size="11" fill="#333">Intelligent Agent Layer</text>
+
+    <rect x="60" y="1370" width="20" height="20" fill="url(#grad5)" rx="3"/>
+    <text x="90" y="1385" font-size="11" fill="#333">Tools & External Services</text>
+
+    <rect x="400" y="1370" width="20" height="20" fill="url(#grad7)" rx="3"/>
+    <text x="430" y="1385" font-size="11" fill="#333">Data Validation & Storage</text>
+  </g>
+</svg>

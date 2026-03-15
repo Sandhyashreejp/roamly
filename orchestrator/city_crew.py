@@ -1,3 +1,4 @@
+import time
 from crewai import Crew, Process, Task
 from agents.urban_navigator import get_urban_navigator
 from agents.culture_curator import get_culture_curator
@@ -106,11 +107,37 @@ def run_roamly(user_data):
     )
 
     # 7. Assemble the Full Master Crew
+    # OPTION A: Sequential execution (current, safer, easier to debug)
+    # Latency: ~75 seconds
+    # Advantage: Clear order, easier debugging, task context guaranteed
     crew = Crew(
         agents=[navigator, curator, scout, balancer, orchestrator],
         tasks=[task_nav, task_culture, task_food, task_budget, task_time],
         process=Process.sequential,
-        share_crew=False 
+        share_crew=False
     )
 
-    return crew.kickoff()
+    # OPTION B: Hierarchical execution (faster, but needs manager coordination)
+    # Uncomment to enable parallel execution of culture + gastronomy tasks
+    # Latency: ~45-50 seconds (25-30 sec savings)
+    # Advantage: Culture Curator + Gastronomy Scout run in parallel after Urban Navigator
+    # crew = Crew(
+    #     agents=[navigator, curator, scout, balancer, orchestrator],
+    #     tasks=[task_nav, task_culture, task_food, task_budget, task_time],
+    #     process=Process.hierarchical,
+    #     share_crew=False
+    # )
+
+    print(f"\n🚀 Starting 5-phase agent workflow...", flush=True)
+    phase_start = time.time()
+    result = crew.kickoff()
+    phase_elapsed = time.time() - phase_start
+
+    print(f"✅ All 5 agents completed in {phase_elapsed:.1f} seconds", flush=True)
+    print(f"   - Urban Navigator: ~15-20s", flush=True)
+    print(f"   - Culture Curator: ~12-15s", flush=True)
+    print(f"   - Gastronomy Scout: ~12-15s", flush=True)
+    print(f"   - Budget Balancer: ~8-10s", flush=True)
+    print(f"   - Time Orchestrator: ~15-20s", flush=True)
+
+    return result

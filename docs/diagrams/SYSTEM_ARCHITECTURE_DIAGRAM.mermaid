@@ -1,0 +1,108 @@
+graph TB
+    subgraph Frontend["🎨 Presentation Layer"]
+        React["React 18 + Vite<br/>UI Components<br/>State Management"]
+    end
+
+    subgraph APIGateway["🔌 API Gateway & Backend"]
+        FastAPI["FastAPI Application<br/>Uvicorn ASGI Server<br/>Port 8000"]
+        Routes["REST Endpoints<br/>/api/plan<br/>/api/status"]
+    end
+
+    subgraph Orchestration["🎯 CrewAI Orchestration Engine"]
+        Crew["CrewAI Crew<br/>Sequential Execution<br/>Context Propagation"]
+        TaskGraph["Task Dependency Graph<br/>DAG Structure<br/>Output Validation"]
+    end
+
+    subgraph AgentLayer["🤖 Agent Layer"]
+        Agent1["Urban Navigator<br/>Route Planning<br/>Attractions"]
+        Agent2["Culture Curator<br/>Cultural Insights<br/>Events"]
+        Agent3["Gastronomy["Gastronomy Scout<br/>Restaurant Discovery<br/>Cuisine Analysis"]
+        Agent4["Budget Balancer<br/>Cost Estimation<br/>Optimization"]
+        Agent5["Time Orchestrator<br/>Schedule Planning<br/>Duration Estimation"]
+    end
+
+    subgraph Tools["🛠️ Tool Kit"]
+        SerperDev["SerperDev API<br/>Google Search<br/>Real-time Data"]
+        WebScrape["Web Scraper<br/>Data Verification<br/>Current Info"]
+        ToolCalls["LLM Function Calling<br/>Tool Invocation<br/>Parameter Binding"]
+    end
+
+    subgraph LLMLayer["🧠 Language Model Layer"]
+        OpenAI["OpenAI API<br/>GPT-4 Model<br/>Token Accounting"]
+        Embeddings["Embeddings<br/>Semantic Understanding"]
+    end
+
+    subgraph DataLayer["💾 Data Layer"]
+        Pydantic["Pydantic v2<br/>Data Validation<br/>Type Safety<br/>Schema Definitions"]
+        Cache["Request/Response<br/>Context Store"]
+    end
+
+    subgraph ExternalServices["🌐 External Services"]
+        GoogleAPI["Google Maps API<br/>Geocoding<br/>Directions"]
+        GooglePlaces["Google Places API<br/>POI Data<br/>Reviews"]
+        TravelDB["Travel Databases<br/>Hotels<br/>Flights"]
+    end
+
+    %% Frontend to Backend
+    React -->|HTTP/REST| FastAPI
+    FastAPI --> Routes
+
+    %% Backend to Orchestration
+    Routes -->|Initiate| Crew
+    Crew -->|Manage| TaskGraph
+
+    %% Orchestration to Agents
+    TaskGraph -->|Task 1| Agent1
+    TaskGraph -->|Task 2| Agent2
+    TaskGraph -->|Task 3| Agent3
+    TaskGraph -->|Task 4| Agent4
+    TaskGraph -->|Task 5| Agent5
+
+    %% Agents to Tools
+    Agent1 -->|Use| ToolCalls
+    Agent2 -->|Use| ToolCalls
+    Agent3 -->|Use| ToolCalls
+    Agent4 -->|Use| ToolCalls
+    Agent5 -->|Use| ToolCalls
+
+    ToolCalls --> SerperDev
+    ToolCalls --> WebScrape
+
+    %% Agents to LLM
+    Agent1 -->|Query| OpenAI
+    Agent2 -->|Query| OpenAI
+    Agent3 -->|Query| OpenAI
+    Agent4 -->|Query| OpenAI
+    Agent5 -->|Query| OpenAI
+
+    OpenAI --> Embeddings
+
+    %% LLM to External Services
+    OpenAI -->|API Calls| GoogleAPI
+    OpenAI -->|API Calls| GooglePlaces
+    OpenAI -->|API Calls| TravelDB
+
+    %% Data Layer Integration
+    FastAPI --> Pydantic
+    Crew --> Pydantic
+    Pydantic --> Cache
+    TaskGraph --> Cache
+
+    %% Styling
+    classDef frontend fill:#4A90E2,stroke:#2E5C8A,color:#fff,stroke-width:2px
+    classDef gateway fill:#7B68EE,stroke:#5A4FA8,color:#fff,stroke-width:2px
+    classDef orchestration fill:#50C878,stroke:#2E7D4E,color:#fff,stroke-width:2px
+    classDef agent fill:#FFB347,stroke:#CC8C3A,color:#000,stroke-width:2px
+    classDef tools fill:#FF6B6B,stroke:#CC5555,color:#fff,stroke-width:2px
+    classDef llm fill:#9B59B6,stroke:#6C3A73,color:#fff,stroke-width:2px
+    classDef data fill:#3498DB,stroke:#2471A3,color:#fff,stroke-width:2px
+    classDef external fill:#E74C3C,stroke:#A93226,color:#fff,stroke-width:2px
+
+    class React frontend
+    class FastAPI,Routes gateway
+    class Crew,TaskGraph orchestration
+    class Agent1,Agent2,Agent3,Agent4,Agent5 agent
+    class SerperDev,WebScrape,ToolCalls tools
+    class OpenAI,Embeddings llm
+    class Pydantic,Cache data
+    class GoogleAPI,GooglePlaces,TravelDB external

@@ -12,6 +12,6 @@ def get_time_orchestrator():
             "activities on sunny days and ensure opening hours are strictly respected."
         ),
         tools=[SerperDevTool(), ScrapeWebsiteTool()],
-        verbose=True,
+        verbose=False,
         cache=True
     )
